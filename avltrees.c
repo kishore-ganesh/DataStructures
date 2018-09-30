@@ -29,12 +29,10 @@ void set_children_count(TREE *s, int n)
     s->right_count = n;
 }
 
-void rotate_left(TREE* s)
+
+
+void set_parent(TREE* s)
 {
-    s->left_count++;
-    s->left=s->parent;
-    set_children_count(s->parent, 0);
-    set_children_null(s->parent);
     if(s->parent->parent!=NULL)
     {
         if(s->parent->parent->left==s->parent)
@@ -47,6 +45,14 @@ void rotate_left(TREE* s)
             s->parent->parent->right=s;
         }
     }
+}
+void rotate_left(TREE* s)
+{
+    s->left_count++;
+    s->left=s->parent;
+    set_children_count(s->parent, 0);
+    set_children_null(s->parent);
+    set_parent(s);
     s->parent=s->parent->parent;
     s->parent->parent=s;
        
@@ -58,18 +64,7 @@ void rotate_right(TREE* s)
     s->right=s->parent;
     set_children_count(s->parent, 0);
     set_children_null(s->parent);
-    if(s->parent->parent!=NULL)
-    {
-        if(s->parent->parent->left==s->parent)
-        {
-            s->parent->parent->left=s;
-        }
-
-        else
-        {
-            s->parent->parent->right=s;
-        }
-    }
+    set_parent(s);
     s->parent=s->parent->parent;
     s->parent->parent=s;
 }
@@ -137,12 +132,7 @@ TREE *insert(TREE *root, int value)
 
             newroot = root->right;
             rotate_left(newroot);
-            // newroot->parent = parent;
-            // newroot->left = root;
-            // newroot->left_count = 1;
-            // root->parent = newroot;
-            // set_children_count(root, 0);
-            // set_children_null(root);
+     
         }
 
         else if (root->right->balance_factor == 1)
@@ -150,17 +140,7 @@ TREE *insert(TREE *root, int value)
             newroot = root->right->left;
             rotate_right(newroot);
             rotate_left(newroot);
-            // newroot->right = root->right;
-            // newroot->left = root;
-            // newroot->right_count = 1;
-            // newroot->left_count = 1;
-            // root->parent = newroot;
-            // root->right->parent = newroot;
-            // newroot->parent = parent;
-            // set_children_count(root->right, 0);
-            // set_children_count(root, 0);
-            // set_children_null(root->right);
-            // set_children_null(root);
+        
         }
     }
 
@@ -170,12 +150,7 @@ TREE *insert(TREE *root, int value)
         {
             newroot = root->left;
             rotate_right(newroot);
-            // newroot->right = root;
-            // newroot->left_count = 1;
-            // root->left->parent = parent;
-            // root->parent = newroot;
-            // set_children_count(root, 0);
-            // set_children_null(root);
+       
         }
 
         else if (root->left->balance_factor == -1)
@@ -185,31 +160,11 @@ TREE *insert(TREE *root, int value)
              newroot->right = root;
              rotate_left(newroot);
              rotate_right(newroot);
-            // newroot->left = root->left;
-            // root->left->parent = newroot;
-            // root->parent = newroot;
-            // newroot->parent = parent;
-            // set_children_count(newroot, 1);
-            // set_children_count(root, 0);
-            // set_children_count(root->left, 0);
-            // set_children_null(root);
-            // set_children_null(root->left);
+            
         }
     }
 
-    // if (parent != NULL&&newroot!=NULL)
-    // {
-    //     if (parent->left == root)
-    //     {
-    //         parent->left = newroot;
-    //     }
-
-    //     else
-    //     {
-    //         parent->right = newroot;
-    //     }
-    // }
-
+  
     return newroot == NULL ? root : newroot;
 }
 
