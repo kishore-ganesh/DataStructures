@@ -1,117 +1,110 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 typedef struct Node NODE;
 #define null 0
 
-
-struct Node {
+struct Node
+{
 
     int data;
-    struct Node* next;
+    struct Node *next;
 };
 
-
-NODE* create()
+NODE *create()
 {
-    NODE* start=null;
-    NODE* prev;
+    NODE *start = null;
+    NODE *prev;
 
-    char ch='Y';
-    while(ch=='Y')
+    char ch = 'Y';
+    while (ch == 'Y')
     {
 
-        NODE* newnode=(NODE*)malloc(sizeof(NODE));
+        NODE *newnode = (NODE *)malloc(sizeof(NODE));
         scanf("%d", &newnode->data);
-        newnode->next=null;
+        newnode->next = null;
 
-        if(start==null)
+        if (start == null)
         {
-            start=newnode;
+            start = newnode;
         }
         else
-        
+
         {
-            prev->next=newnode;
+            prev->next = newnode;
         }
 
-        prev=newnode;
+        prev = newnode;
         printf("Continue?");
         scanf(" %c", &ch);
-
     }
 
     return start;
 }
 
-void traversal(NODE* start)
+void traversal(NODE *start)
 {
-    while(start!=null)
+    while (start != null)
     {
         printf("%d ", start->data);
-        start=start->next;
+        start = start->next;
     }
 
     printf("\n");
 }
 
-int findSize(NODE* start)
-{   int cc=0;
-    while(start!=NULL)
+int findSize(NODE *start)
+{
+    int cc = 0;
+    while (start != NULL)
     {
         cc++;
-        start=start->next;
+        start = start->next;
     }
 
     return cc;
 }
-NODE* sort(NODE* start)
+NODE *sort(NODE *start)
 {
-    NODE* current=start;
-    NODE* prev;
-    int cc=0;
-    cc=findSize(start);
-    for(int i=0; i<cc; i++)
+    NODE *current = start;
+    NODE *prev;
+    int cc = 0;
+    cc = findSize(start);
+    for (int i = 0; i < cc; i++)
     {
-        current=start;
-        while(current->next!=NULL)
-    
-    {
-        NODE* temp=current->next;
-        if(current->data>current->next->data)
+        current = start;
+        while (current->next != NULL)
+
         {
-            NODE* t=current->next;
-            current->next=current->next->next;
-            t->next=current;
-            current=t;
-            if(t->next!=start)
+            NODE *temp = current->next;
+            if (current->data > current->next->data)
             {
-               prev->next=current;
-               
+                NODE *t = current->next;
+                current->next = current->next->next;
+                t->next = current;
+                current = t;
+                if (t->next != start)
+                {
+                    prev->next = current;
+                }
+
+                else
+                {
+                    start = current;
+                }
             }
 
-            else
-            {
-                start=current;
-            }
+            prev = current;
+            current = temp;
         }
-
-        prev=current;
-        current=temp;
-    }
-    
     }
 
     return start;
 }
 
-
-
 int main()
 {
-     NODE* start=create();
+    NODE *start = create();
     traversal(start);
-    start=sort(start);
+    start = sort(start);
     traversal(start);
-
-
 }

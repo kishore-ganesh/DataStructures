@@ -1,119 +1,116 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 typedef struct Node NODE;
-#define null 0 
-struct Node {
+#define null 0
+struct Node
+{
 
     int data;
-    struct Node* next;
+    struct Node *next;
 };
 
-NODE* create()
+NODE *create()
 {
-    NODE* start=null;
-    NODE* prev;
+    NODE *start = null;
+    NODE *prev;
 
-    char ch='Y';
-    while(ch=='Y')
+    char ch = 'Y';
+    while (ch == 'Y')
     {
 
-        NODE* newnode=(NODE*)malloc(sizeof(NODE));
+        NODE *newnode = (NODE *)malloc(sizeof(NODE));
         scanf("%d", &newnode->data);
-        newnode->next=null;
+        newnode->next = null;
 
-        if(start==null)
+        if (start == null)
         {
-            start=newnode;
+            start = newnode;
         }
         else
-        
+
         {
-            prev->next=newnode;
+            prev->next = newnode;
         }
 
-        prev=newnode;
+        prev = newnode;
         printf("Continue?");
         scanf(" %c", &ch);
-
     }
 
     return start;
 }
 
-void traversal(NODE* start)
+void traversal(NODE *start)
 {
-    while(start!=null)
+    while (start != null)
     {
         printf("%d ", start->data);
-        start=start->next;
+        start = start->next;
     }
 
     printf("\n");
 }
 
-
-swap_first_last(NODE* start)
+swap_first_last(NODE *start)
 {
-    NODE* current=start;
-    while(current->next!=NULL)
+    NODE *current = start;
+    while (current->next != NULL)
     {
-        current=current->next;
+        current = current->next;
     }
 
-    int temp=start->data;
-    start->data=current->data;
-    current->data=temp;
+    int temp = start->data;
+    start->data = current->data;
+    current->data = temp;
 }
 
-swap_contiguous(NODE * start)
+swap_contiguous(NODE *start)
 {
-    while(start->next!=null)
+    while (start->next != null)
     {
-        int t=start->data;
-        start->data=start->next->data;
-        start->next->data=t;
-        start=start->next->next;
-        if(start==null)
+        int t = start->data;
+        start->data = start->next->data;
+        start->next->data = t;
+        start = start->next->next;
+        if (start == null)
         {
             break;
         }
-
     }
 }
 
-check_palindrome(NODE* start)
+check_palindrome(NODE *start)
 {
 
-    NODE* current=start;
-    int cc=0;
-    while(current!=NULL)
+    NODE *current = start;
+    int cc = 0;
+    while (current != NULL)
     {
         cc++;
-        current=current->next;
+        current = current->next;
     }
 
-    
-    current=start;
-    for(int i=0; i<cc/2; i++)
+    current = start;
+    for (int i = 0; i < cc / 2; i++)
     {
-        current=current->next;
+        current = current->next;
     }
 
-    current=reverse_list(current);
-    int flag=0;
-    while(current!=null)
+    current = reverse_list(current);
+    int flag = 0;
+    while (current != null)
     {
-        if(current->data!=start->data)
+        if (current->data != start->data)
         {
-            flag=1;
+            flag = 1;
             break;
         }
 
-        start=start->next;
-        current=current->next;
+        start = start->next;
+        current = current->next;
     }
 
-    if(flag)
+    if (flag)
     {
         printf("NOT A PALINDROME");
     }
@@ -122,19 +119,17 @@ check_palindrome(NODE* start)
     {
         printf("IS A PALINDROME");
     }
-
-
 }
 
-reverse_list(NODE* start)
+reverse_list(NODE *start)
 {
-    NODE* prev=NULL;
-    while(start!=NULL)
+    NODE *prev = NULL;
+    while (start != NULL)
     {
-        NODE* t=start->next;
-        start->next=prev;
-        prev=start;
-        start=t;
+        NODE *t = start->next;
+        start->next = prev;
+        prev = start;
+        start = t;
     }
 
     return prev;
@@ -142,7 +137,7 @@ reverse_list(NODE* start)
 
 int main()
 {
-    NODE* start=create();
+    NODE *start = create();
     traversal(start);
     // swap_first_last(start);
     // traversal(start);

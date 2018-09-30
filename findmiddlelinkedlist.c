@@ -1,80 +1,77 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 typedef struct Node NODE;
-#define null 0 
-struct Node {
+#define null 0
+struct Node
+{
 
     int data;
-    struct Node* next;
+    struct Node *next;
 };
 
-NODE* create()
+NODE *create()
 {
-    NODE* start=null;
-    NODE* prev;
+    NODE *start = null;
+    NODE *prev;
 
-    char ch='Y';
-    while(ch=='Y')
+    char ch = 'Y';
+    while (ch == 'Y')
     {
 
-        NODE* newnode=(NODE*)malloc(sizeof(NODE));
+        NODE *newnode = (NODE *)malloc(sizeof(NODE));
         scanf("%d", &newnode->data);
-        newnode->next=null;
+        newnode->next = null;
 
-        if(start==null)
+        if (start == null)
         {
-            start=newnode;
+            start = newnode;
         }
         else
-        
+
         {
-            prev->next=newnode;
+            prev->next = newnode;
         }
 
-        prev=newnode;
+        prev = newnode;
         printf("Continue?");
         scanf(" %c", &ch);
-
     }
 
     return start;
 }
 
-void traversal(NODE* start)
+void traversal(NODE *start)
 {
-    while(start!=null)
+    while (start != null)
     {
         printf("%d ", start->data);
-        start=start->next;
+        start = start->next;
     }
 
     printf("\n");
 }
 
-
-int getMiddle(NODE* start)
+int getMiddle(NODE *start)
 {
-    NODE* middle=start;
-    int cc=0;
-    while(start!=NULL)
+    NODE *middle = start;
+    int cc = 0;
+    while (start != NULL)
     {
         cc++;
-        if(cc%2==0)
+        if (cc % 2 == 0)
         {
-           middle=middle->next;
+            middle = middle->next;
         }
 
-        start=start->next;
+        start = start->next;
     }
 
     return middle->data;
 }
 
-
-
 int main()
 {
-    NODE* start=create();
+    NODE *start = create();
     traversal(start);
     // swap_first_last(start);
     // traversal(start);

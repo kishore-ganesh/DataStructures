@@ -29,44 +29,41 @@ void set_children_count(TREE *s, int n)
     s->right_count = n;
 }
 
-
-
-void set_parent(TREE* s)
+void set_parent(TREE *s)
 {
-    if(s->parent->parent!=NULL)
+    if (s->parent->parent != NULL)
     {
-        if(s->parent->parent->left==s->parent)
+        if (s->parent->parent->left == s->parent)
         {
-            s->parent->parent->left=s;
+            s->parent->parent->left = s;
         }
 
         else
         {
-            s->parent->parent->right=s;
+            s->parent->parent->right = s;
         }
     }
 }
-void rotate_left(TREE* s)
+void rotate_left(TREE *s)
 {
     s->left_count++;
-    s->left=s->parent;
+    s->left = s->parent;
     set_children_count(s->parent, 0);
     set_children_null(s->parent);
     set_parent(s);
-    s->parent=s->parent->parent;
-    s->parent->parent=s;
-       
+    s->parent = s->parent->parent;
+    s->parent->parent = s;
 }
 
-void rotate_right(TREE* s)
+void rotate_right(TREE *s)
 {
     s->right_count++;
-    s->right=s->parent;
+    s->right = s->parent;
     set_children_count(s->parent, 0);
     set_children_null(s->parent);
     set_parent(s);
-    s->parent=s->parent->parent;
-    s->parent->parent=s;
+    s->parent = s->parent->parent;
+    s->parent->parent = s;
 }
 TREE *insert(TREE *root, int value)
 {
@@ -88,7 +85,7 @@ TREE *insert(TREE *root, int value)
         {
             root->right = n;
             root->right_count++;
-            n->parent=root;
+            n->parent = root;
         }
 
         else
@@ -103,8 +100,7 @@ TREE *insert(TREE *root, int value)
         {
             root->left = n;
             root->left_count++;
-            n->parent=root;
-            
+            n->parent = root;
         }
 
         else
@@ -132,7 +128,6 @@ TREE *insert(TREE *root, int value)
 
             newroot = root->right;
             rotate_left(newroot);
-     
         }
 
         else if (root->right->balance_factor == 1)
@@ -140,7 +135,6 @@ TREE *insert(TREE *root, int value)
             newroot = root->right->left;
             rotate_right(newroot);
             rotate_left(newroot);
-        
         }
     }
 
@@ -150,21 +144,17 @@ TREE *insert(TREE *root, int value)
         {
             newroot = root->left;
             rotate_right(newroot);
-       
         }
 
         else if (root->left->balance_factor == -1)
         {
 
-            
-             newroot->right = root;
-             rotate_left(newroot);
-             rotate_right(newroot);
-            
+            newroot->right = root;
+            rotate_left(newroot);
+            rotate_right(newroot);
         }
     }
 
-  
     return newroot == NULL ? root : newroot;
 }
 
@@ -192,13 +182,12 @@ int main()
 {
     TREE *root = NULL;
     int arr[5] = {21, 42, 16, 12, 9};
-    int arr2[5]={5, 4, 3, 2, 1};
-    int arr3[5]={1, 2, 3, 4, 5};
+    int arr2[5] = {5, 4, 3, 2, 1};
+    int arr3[5] = {1, 2, 3, 4, 5};
     for (int i = 0; i < 5; i++)
     {
         root = insert(root, arr[i]);
     }
-
 
     int sval;
     scanf("%d", &sval);
