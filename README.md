@@ -9,6 +9,7 @@ Datastructures implemented:
 4. AVL Trees
 5. Stack using Linked List
 5. Circular Queues using Array
+6. Graph
 
 Algorithms:
 1. Find middle of Linked List in one pass
@@ -19,3 +20,4 @@ Algorithms:
 6. Simple bubble sort on Linked Lists by swapping nodes
 7. Evaluation of Postfix expression
 8. Quicksort
+9. Dijkstra's Algorithm
