@@ -20,3 +20,4 @@ Algorithms:
 7. Evaluation of Postfix expression
 8. Quicksort
 9. Find all permutations 
+10. Huffman encoding
