@@ -19,3 +19,4 @@ Algorithms:
 6. Simple bubble sort on Linked Lists by swapping nodes
 7. Evaluation of Postfix expression
 8. Quicksort
+9. Find all permutations 
