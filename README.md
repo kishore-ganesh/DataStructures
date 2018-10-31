@@ -23,4 +23,4 @@ Algorithms:
 9. Find all permutations 
 10. Huffman encoding
 11. Dijkstra's Algorithm
-
+12. Evaluation of Infix Expression
