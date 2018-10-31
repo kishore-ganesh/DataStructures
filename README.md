@@ -11,7 +11,9 @@ Datastructures implemented:
 5. Circular Queues using Array
 6. Graph
 7. Min Heap
+
 Algorithms:
+
 1. Find middle of Linked List in one pass
 2. Infix to Postfix conversion of expression
 3. Reverse of Linked List
